@@ -31,7 +31,7 @@ export default {
   
     },
     fetchApi(endpoint, collection){
-      const { baseUri, language, apiKey } = api;
+      const { baseUri, language, apiKey, baseUriImage } = api;
       const params = {
         query: store.filter,
         api_key: apiKey,
