@@ -14,7 +14,7 @@
 <template>
     <section>
         <h1>{{ titleSection }}</h1>
-        <ProductionCard  v-for="collection in collections" :list="collection"/>
+        <ProductionCard  v-for="collection in collections" :key="collection.id" :list="collection"/>
     </section>
 
-</template>
+</template> 
