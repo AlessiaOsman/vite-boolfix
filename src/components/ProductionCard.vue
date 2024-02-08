@@ -1,6 +1,9 @@
 <script>
 export default {
     name: 'ProductionCard',
+    data: () => ({
+        votes: [1,2,3,4,5]
+    }),
     props: {
         media: Object,
 
@@ -19,6 +22,17 @@ export default {
         starVote(){
             const vote = parseInt(this.media.vote_average / 2)
             return vote
+        },
+
+        starIcons(className){
+            for (let i = 1; i <= 5; i++) {
+            if (i <= this.starVote) {
+            className = 'fa-solid'
+            } else {
+            className = 'fa-regular'
+        }
+      }
+      return className;
         }
 
     }
@@ -37,7 +51,7 @@ export default {
             <span v-else>{{ media.original_language }}</span>
         </li>
         <li>
-            {{ starVote }}
+            <i class="fa-star" :class="starIcons"></i>
         </li>
     </ul>
 </template>
