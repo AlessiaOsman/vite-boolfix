@@ -1,4 +1,5 @@
 <script>
+import { posterImage } from '../data/index';
 export default {
     name: 'ProductionCard',
     data: () => ({
@@ -7,7 +8,7 @@ export default {
     }),
     props: {
         media: Object,
-        imgSrc: String,
+        posterPath: String,
         imageName: String
 
     },
@@ -27,6 +28,13 @@ export default {
             return vote
         },
 
+        posterSrc(){
+            if (!this.posterPath) return posterImage.placeholder;
+            return posterImage.baseUri + this.posterPath 
+        }
+
+        
+
         
 
     }
@@ -36,7 +44,7 @@ export default {
     
     <ul>
         <li>
-            <img :src="imgSrc" :alt="imageName">
+            <img :src="posterSrc" :alt="imageName">
         </li>
         <li>{{ media.title || media.name }}</li>
         <li>{{ media.original_title || media.original_name }}</li>
