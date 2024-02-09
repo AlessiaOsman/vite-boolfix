@@ -2,10 +2,13 @@
 export default {
     name: 'ProductionCard',
     data: () => ({
-        votes: [1,2,3,4,5]
+        votes: [1,2,3,4,5],
+        
     }),
     props: {
         media: Object,
+        imgSrc: String,
+        imageName: String
 
     },
     computed: {
@@ -24,16 +27,7 @@ export default {
             return vote
         },
 
-        starIcons(className){
-            for (let i = 1; i <= 5; i++) {
-            if (i <= this.starVote) {
-            className = 'fa-solid'
-            } else {
-            className = 'fa-regular'
-        }
-      }
-      return className;
-        }
+        
 
     }
 }
@@ -42,7 +36,7 @@ export default {
     
     <ul>
         <li>
-            <img src="" alt="">
+            <img :src="imgSrc" :alt="imageName">
         </li>
         <li>{{ media.title || media.name }}</li>
         <li>{{ media.original_title || media.original_name }}</li>
@@ -50,8 +44,15 @@ export default {
             <img v-if="hasFlag" :src="flagSrc" alt="">
             <span v-else>{{ media.original_language }}</span>
         </li>
+        <li>{{ starVote }}</li>
         <li>
-            <i class="fa-star" :class="starIcons"></i>
+            <ul>
+                <li v-for="vote in votes">
+                    <i v-if="vote > starVote" class="fa-star fa-regular"></i>
+                    <i v-else class="fa-star fa-solid"></i>
+                </li>
+            </ul>
         </li>
     </ul>
 </template>
+
