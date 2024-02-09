@@ -4,7 +4,7 @@
     }
 </script>
 <template>
-    <main>
+    <main class="flex-grow-1">
     <slot></slot>
     </main>
 </template>
@@ -13,5 +13,7 @@
     main{
         padding: 32px;
         background-color: black;
+        height: 100%;
+        overflow: auto;
     }
 </style>

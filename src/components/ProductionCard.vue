@@ -41,21 +41,19 @@ export default {
 }
 </script>
 <template>
-    <div class="col media-card py-3">
-        <div>
-            <img class="poster-image" :src="posterSrc" :alt="imageName">
-        </div>
+    <div class="col media-card">
+        <img class="poster-image" :src="posterSrc" :alt="imageName">
 
-        <ul class="d-none">
+        <ul class="card-info-container">
             <li class="language-info mb-4">
                 <img v-if="hasFlag" :src="flagSrc" alt="">
-                <span v-else>{{ media.original_language }}</span>
+                <span v-else><strong>Lingua originale:</strong> {{ media.original_language }}</span>
             </li>
-            <li class="mb-4">{{ media.title || media.name }}</li>
-            <li class="mb-4">{{ media.original_title || media.original_name }}</li>
+            <li class="mb-4"><strong>Titolo:</strong> {{ media.title || media.name }}</li>
+            <li class="mb-4"><strong>Titolo originale:</strong> {{ media.original_title || media.original_name }}</li>
             <li>
                 <ul class="d-flex">
-                    <li v-for="vote in votes">
+                    <li v-for="vote in votes"> 
                         <i v-if="vote > starVote" class="fa-star fa-regular"></i>
                         <i v-else class="fa-star fa-solid"></i>
                     </li>
@@ -70,15 +68,39 @@ export default {
     max-width: 342px;
     height: 513px;
     background-color: black;
-    color: white;   
-    border: 1px solid white;
+    color: white;
+    border: 1px solid red;
+    padding: 0;
+
+    .card-info-container {
+        display: none;
+        width: 342px;
+
+        .fa-solid{
+            color: yellow;
+        }
+    }
+
+    &:hover {
+        padding: 16px;
+        .poster-image {
+            display: none;
+        }
+
+        .card-info-container{
+            display: block;
+        }
+    }
+
+
     .poster-image {
         height: 513px;
     }
 
-    .language-info{
+    .language-info {
         height: 50px;
-        img{
+
+        img {
             height: 100%;
         }
     }
